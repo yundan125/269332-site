@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="工具箱 · 269332" description="网页工具与功能导航。">
+	<main>
+		<header>
+			<p class="eyebrow">工具箱</p>
+			<h1>网页工具与功能导航</h1>
+			<p>这里会收录站内工具和外部工具站。真实名称、地址和状态确认后再逐项发布。</p>
+		</header>
+		<section class="empty-state">
+			<h2>暂时还没有公开工具</h2>
+			<p>后续工具会明确标注分类、状态、访问地址、源码地址及是否跳转外部网站。</p>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		width: min(880px, calc(100% - 2rem));
+		max-width: none;
+	}
+	header {
+		margin-bottom: 2.5rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent-dark);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+	}
+	header > p:last-child,
+	.empty-state p {
+		color: rgb(var(--gray));
+	}
+	.empty-state {
+		padding: 2rem;
+		background: white;
+		border: 1px dashed rgb(var(--gray));
+		border-radius: 14px;
+	}
+	.empty-state p {
+		margin-bottom: 0;
+	}
+</style>

@@ -1,0 +1,94 @@
+---
+import { SITE_TITLE } from '../consts';
+import HeaderLink from './HeaderLink.astro';
+---
+
+<header class="site-header">
+	<nav aria-label="主导航">
+		<a class="brand" href="/">{SITE_TITLE}</a>
+		<div class="nav-links">
+			<HeaderLink href="/">首页</HeaderLink>
+			<HeaderLink href="/blog">博客</HeaderLink>
+			<HeaderLink href="/tools">工具箱</HeaderLink>
+			<HeaderLink href="/projects">项目</HeaderLink>
+			<HeaderLink href="/about">关于</HeaderLink>
+		</div>
+		<a
+			class="repo-link"
+			href="https://github.com/yundan125/269332-site"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			GitHub
+			<span class="sr-only">（在新窗口打开）</span>
+		</a>
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		margin: 0;
+		padding: 0 1rem;
+		background: rgba(255, 255, 255, 0.94);
+		border-bottom: 1px solid rgb(var(--gray-light));
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		width: min(1120px, 100%);
+		min-height: 4rem;
+		margin: 0 auto;
+	}
+	.brand {
+		flex: 0 0 auto;
+		color: rgb(var(--black));
+		font-size: 1.1rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.nav-links {
+		display: flex;
+		flex: 1;
+		align-items: stretch;
+		justify-content: center;
+	}
+	.nav-links :global(a) {
+		padding: 1rem 0.7rem;
+		color: rgb(var(--gray-dark));
+		border-bottom: 3px solid transparent;
+	}
+	.nav-links :global(a.active) {
+		color: var(--accent-dark);
+		border-bottom-color: var(--accent);
+		text-decoration: none;
+	}
+	.repo-link {
+		flex: 0 0 auto;
+		font-size: 0.9rem;
+	}
+	@media (max-width: 720px) {
+		nav {
+			flex-wrap: wrap;
+			gap: 0;
+			padding-top: 0.75rem;
+		}
+		.brand {
+			flex: 1;
+		}
+		.repo-link {
+			padding: 0.25rem 0;
+		}
+		.nav-links {
+			order: 3;
+			width: 100%;
+			justify-content: flex-start;
+			overflow-x: auto;
+			scrollbar-width: none;
+		}
+		.nav-links :global(a) {
+			flex: 0 0 auto;
+			padding: 0.75rem 0.65rem;
+		}
+	}
+</style>

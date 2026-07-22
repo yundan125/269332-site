@@ -1,0 +1,31 @@
+---
+import { SITE_TITLE } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+	<p>&copy; {year} {SITE_TITLE}</p>
+	<p>
+		<a href="/rss.xml">RSS</a>
+		<span aria-hidden="true">·</span>
+		<a href="https://github.com/yundan125/269332-site" target="_blank" rel="noopener noreferrer">
+			GitHub
+			<span class="sr-only">（在新窗口打开）</span>
+		</a>
+	</p>
+</footer>
+
+<style>
+	footer {
+		padding: 2.5rem 1rem 4rem;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	p {
+		margin: 0.25rem 0;
+	}
+	a {
+		color: inherit;
+	}
+</style>

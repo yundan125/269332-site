@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="项目 · 269332" description="个人项目与开发记录。">
+	<main>
+		<header>
+			<p class="eyebrow">项目</p>
+			<h1>项目与开发记录</h1>
+			<p>这里只展示已经确认的真实项目，不使用虚构名称、成果或链接。</p>
+		</header>
+		<section class="empty-state">
+			<h2>项目资料正在整理</h2>
+			<p>后续将补充项目简介、状态、技术栈、访问地址和源码地址。</p>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	main {
+		width: min(880px, calc(100% - 2rem));
+		max-width: none;
+	}
+	header {
+		margin-bottom: 2.5rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.5rem;
+		color: var(--accent-dark);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+	}
+	header > p:last-child,
+	.empty-state p {
+		color: rgb(var(--gray));
+	}
+	.empty-state {
+		padding: 2rem;
+		background: white;
+		border: 1px dashed rgb(var(--gray));
+		border-radius: 14px;
+	}
+	.empty-state p {
+		margin-bottom: 0;
+	}
+</style>

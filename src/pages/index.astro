@@ -1,49 +1,135 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
+<BaseLayout title={SITE_TITLE + ' · 首页'} description={SITE_DESCRIPTION}>
+	<main class="home">
+		<section class="hero">
+			<p class="eyebrow">个人网站</p>
+			<h1>写作、项目与工具，都在这里。</h1>
+			<p class="intro">
+				这里将持续记录博客文章、个人项目和开发过程，也会整理可以直接使用或跳转访问的网页工具。
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+			<div class="actions">
+				<a class="primary" href="/blog/">阅读博客</a>
+				<a class="secondary" href="/tools/">打开工具箱</a>
+			</div>
+		</section>
+
+		<section class="entry-grid" aria-label="网站主要内容">
+			<a class="entry-card" href="/blog/">
+				<span>博客</span>
+				<strong>长期记录值得回看的内容</strong>
+				<p>文章发布后会在这里按时间展示。</p>
+			</a>
+			<a class="entry-card" href="/tools/">
+				<span>工具箱</span>
+				<strong>集中访问独立或站内工具</strong>
+				<p>工具信息将在确认真实地址后逐步补充。</p>
+			</a>
+			<a class="entry-card" href="/projects/">
+				<span>项目</span>
+				<strong>展示项目与开发记录</strong>
+				<p>不使用虚构成果，只收录真实项目。</p>
+			</a>
+		</section>
+	</main>
+</BaseLayout>
+
+<style>
+	.home {
+		width: min(1040px, calc(100% - 2rem));
+		max-width: none;
+		padding: 5rem 0;
+	}
+	.hero {
+		max-width: 780px;
+		padding: 2rem 0 4rem;
+	}
+	.eyebrow {
+		margin: 0 0 0.75rem;
+		color: var(--accent-dark);
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+	}
+	h1 {
+		max-width: 12ch;
+		margin-bottom: 1rem;
+	}
+	.intro {
+		max-width: 42rem;
+		color: rgb(var(--gray));
+	}
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 2rem;
+	}
+	.actions a {
+		display: inline-flex;
+		align-items: center;
+		min-height: 2.75rem;
+		padding: 0 1.1rem;
+		border: 1px solid var(--accent);
+		border-radius: 999px;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.primary {
+		background: var(--accent);
+		color: white;
+	}
+	.primary:hover {
+		background: var(--accent-dark);
+		color: white;
+	}
+	.secondary {
+		background: white;
+	}
+	.entry-grid {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.entry-card {
+		padding: 1.4rem;
+		background: rgba(255, 255, 255, 0.82);
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 14px;
+		color: rgb(var(--gray-dark));
+		text-decoration: none;
+	}
+	.entry-card span {
+		color: var(--accent-dark);
+		font-size: 0.85rem;
+		font-weight: 700;
+	}
+	.entry-card strong {
+		display: block;
+		margin: 0.5rem 0;
+		color: rgb(var(--black));
+	}
+	.entry-card p {
+		margin: 0;
+		color: rgb(var(--gray));
+		font-size: 0.9rem;
+	}
+	.entry-card:hover {
+		border-color: var(--accent);
+		transform: translateY(-2px);
+	}
+	@media (max-width: 720px) {
+		.home {
+			padding: 2.5rem 0;
+		}
+		.hero {
+			padding-bottom: 2.5rem;
+		}
+		.entry-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
