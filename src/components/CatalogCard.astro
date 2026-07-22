@@ -1,0 +1,117 @@
+---
+import type { CatalogItem } from '../data/catalog';
+
+interface Props {
+	item: CatalogItem;
+}
+
+const { item } = Astro.props;
+const isPrivate = item.visibility === 'private';
+---
+
+<article class="catalog-card">
+	<div class="card-meta">
+		<span>{item.category}</span>
+		<span class="status">{item.status}</span>
+		{isPrivate && <span class="private">私有仓库</span>}
+	</div>
+	<h2>{item.name}</h2>
+	<p class="summary">{item.summary}</p>
+	<ul class="tag-list" aria-label={item.name + ' 技术标签'}>
+		{item.tags.map((tag) => <li>{tag}</li>)}
+	</ul>
+	<div class="card-footer">
+		{isPrivate && <p>源代码仓库仅对已授权的 GitHub 账号开放。</p>}
+		<a href={item.repository} target="_blank" rel="noopener noreferrer">
+			{isPrivate ? '访问私有仓库' : '查看 GitHub 仓库'}
+			<span aria-hidden="true">↗</span>
+			<span class="sr-only">（在新窗口打开）</span>
+		</a>
+	</div>
+</article>
+
+<style>
+	.catalog-card {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		padding: 1.5rem;
+		background: rgba(255, 255, 255, 0.88);
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 16px;
+		box-shadow: 0 8px 24px rgba(var(--gray), 10%);
+	}
+	.catalog-card:hover {
+		border-color: rgba(35, 55, 255, 0.5);
+		box-shadow: 0 12px 30px rgba(var(--gray), 18%);
+		transform: translateY(-2px);
+	}
+	.card-meta {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin-bottom: 0.85rem;
+	}
+	.card-meta span {
+		padding: 0.2rem 0.55rem;
+		background: rgb(var(--gray-light));
+		border-radius: 999px;
+		color: rgb(var(--gray-dark));
+		font-size: 0.72rem;
+		font-weight: 700;
+	}
+	.card-meta .status {
+		background: #e5f5e8;
+		color: #17672a;
+	}
+	.card-meta .private {
+		background: #fff0df;
+		color: #8a4b0f;
+	}
+	h2 {
+		margin-bottom: 0.65rem;
+		font-size: 1.4rem;
+		overflow-wrap: anywhere;
+	}
+	.summary {
+		flex: 1;
+		color: rgb(var(--gray));
+		font-size: 0.92rem;
+	}
+	.tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+		margin: 0 0 1.25rem;
+		padding: 0;
+		list-style: none;
+	}
+	.tag-list li {
+		padding: 0.2rem 0.5rem;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 6px;
+		color: rgb(var(--gray));
+		font-size: 0.72rem;
+	}
+	.card-footer {
+		padding-top: 1rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.card-footer p {
+		margin-bottom: 0.75rem;
+		color: #8a4b0f;
+		font-size: 0.78rem;
+	}
+	.card-footer a {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.catalog-card:hover {
+			transform: none;
+		}
+	}
+</style>

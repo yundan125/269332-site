@@ -1,27 +1,35 @@
 ---
+import CatalogCard from '../../components/CatalogCard.astro';
+import { tools } from '../../data/catalog';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="工具箱 · 269332" description="网页工具与功能导航。">
-	<main>
+	<main class="catalog-page">
 		<header>
-			<p class="eyebrow">工具箱</p>
-			<h1>网页工具与功能导航</h1>
-			<p>这里会收录站内工具和外部工具站。真实名称、地址和状态确认后再逐项发布。</p>
+			<div>
+				<p class="eyebrow">工具箱</p>
+				<h1>网页工具与功能导航</h1>
+				<p>收录可以直接使用或通过独立仓库访问的网页工具。</p>
+			</div>
+			<p class="count">{tools.length} 个工具</p>
 		</header>
-		<section class="empty-state">
-			<h2>暂时还没有公开工具</h2>
-			<p>后续工具会明确标注分类、状态、访问地址、源码地址及是否跳转外部网站。</p>
+		<section class="catalog-grid" aria-label="工具列表">
+			{tools.map((tool) => <CatalogCard item={tool} />)}
 		</section>
 	</main>
 </BaseLayout>
 
 <style>
-	main {
-		width: min(880px, calc(100% - 2rem));
+	.catalog-page {
+		width: min(1040px, calc(100% - 2rem));
 		max-width: none;
 	}
 	header {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 2rem;
 		margin-bottom: 2.5rem;
 	}
 	.eyebrow {
@@ -31,17 +39,29 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		font-weight: 700;
 		letter-spacing: 0.14em;
 	}
-	header > p:last-child,
-	.empty-state p {
+	header div > p:last-child,
+	.count {
+		margin-bottom: 0;
 		color: rgb(var(--gray));
 	}
-	.empty-state {
-		padding: 2rem;
-		background: white;
-		border: 1px dashed rgb(var(--gray));
-		border-radius: 14px;
+	.count {
+		flex: 0 0 auto;
+		font-size: 0.85rem;
 	}
-	.empty-state p {
-		margin-bottom: 0;
+	.catalog-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	@media (max-width: 720px) {
+		header {
+			display: block;
+		}
+		.count {
+			margin-top: 1rem;
+		}
+		.catalog-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 </style>
