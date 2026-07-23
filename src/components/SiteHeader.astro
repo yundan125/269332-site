@@ -10,7 +10,7 @@ import HeaderLink from './HeaderLink.astro';
 		</a>
 		<div class="nav-links">
 			<HeaderLink href="/">首页</HeaderLink>
-			<HeaderLink href="/tools">工具箱</HeaderLink>
+			<HeaderLink href="/tools">守望先锋工具箱</HeaderLink>
 			<HeaderLink href="/projects">项目</HeaderLink>
 			<HeaderLink href="/about">关于</HeaderLink>
 		</div>
@@ -63,6 +63,9 @@ import HeaderLink from './HeaderLink.astro';
 		gap: 0.25rem;
 	}
 	.nav-links :global(a) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		padding: 0.55rem 0.8rem;
 		border-radius: var(--radius-small);
 		color: var(--color-text-muted);
@@ -113,8 +116,10 @@ import HeaderLink from './HeaderLink.astro';
 			gap: 0.2rem;
 		}
 		.nav-links :global(a) {
-			padding: 0.55rem 0.2rem;
-			font-size: 0.8rem;
+			min-width: 0;
+			padding: 0.5rem 0.1rem;
+			font-size: 0.78rem;
+			line-height: 1.35;
 			text-align: center;
 		}
 		.repo-link {

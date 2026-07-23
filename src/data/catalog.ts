@@ -2,13 +2,14 @@ export interface CatalogItem {
 	name: string;
 	summary: string;
 	repository: string;
+	website?: string;
 	category: string;
 	status: string;
 	visibility: 'public' | 'private';
 	tags: string[];
 }
 
-export const tools: CatalogItem[] = [
+export const overwatchTools: CatalogItem[] = [
 	{
 		name: 'OWCS Predictor',
 		summary:
@@ -16,6 +17,17 @@ export const tools: CatalogItem[] = [
 		repository: 'https://github.com/yundan125/OWCS-Predictor',
 		category: '电竞 / 预测工具',
 		status: '开发中',
+		visibility: 'public',
+		tags: ['HTML', 'CSS', 'JavaScript', 'localStorage'],
+	},
+	{
+		name: '给守望先锋英雄起名字',
+		summary:
+			'面向没玩过《守望先锋》的玩家制作的第一印象猜名游戏。根据英雄图标或全身照，从名称池中为每位英雄分配名字并填写理由，提交后再揭晓真实名称和猜测结果。',
+		repository: 'https://github.com/yundan125/overwatch-hero-quiz',
+		website: '/overwatch-hero-quiz/',
+		category: '守望先锋 / 英雄猜名',
+		status: '可用',
 		visibility: 'public',
 		tags: ['HTML', 'CSS', 'JavaScript', 'localStorage'],
 	},

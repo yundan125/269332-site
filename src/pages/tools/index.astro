@@ -1,25 +1,28 @@
 ---
 import CatalogCard from '../../components/CatalogCard.astro';
-import { tools } from '../../data/catalog';
+import { overwatchTools } from '../../data/catalog';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-	title="工具箱 · 269332"
-	description="浏览 269332 收录的网页工具、电竞工具与功能导航。"
+	title="守望先锋工具箱 · 269332"
+	description="浏览 269332 收录的守望先锋赛事预测、英雄猜名和其他交互工具。"
 >
 	<main class="catalog-page">
 		<header>
 			<div>
-				<p class="eyebrow">工具箱</p>
-				<h1>网页工具与功能导航</h1>
-				<p>收录可以直接使用或通过公开仓库获取的网页工具。</p>
+				<p class="eyebrow">守望先锋</p>
+				<h1>守望先锋工具箱</h1>
+				<p>收录围绕《守望先锋》制作的赛事预测、英雄猜名和其他网页工具。</p>
 			</div>
-			<p class="count"><strong>{tools.length}</strong> 个工具</p>
+			<p class="count"><strong>{overwatchTools.length}</strong> 个守望先锋工具</p>
 		</header>
-		<section class="catalog-grid single-friendly" aria-label="工具列表">
-			{tools.map((tool) => <CatalogCard item={tool} />)}
+		<section class="catalog-grid" aria-label="守望先锋工具列表">
+			{overwatchTools.map((tool) => <CatalogCard item={tool} />)}
 		</section>
+		<aside class="copyright-note" aria-label="守望先锋版权与非官方说明">
+			《守望先锋》及相关角色、美术素材版权归 Blizzard Entertainment 所有。本站收录的相关工具用于个人学习和非商业娱乐，与 Blizzard Entertainment 无官方关联。
+		</aside>
 	</main>
 </BaseLayout>
 
@@ -58,8 +61,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem;
 	}
-	.catalog-grid.single-friendly > :only-child {
-		max-width: 760px;
+
+	.copyright-note {
+		margin-top: 2rem;
+		padding: 1rem 1.1rem;
+		background: var(--color-surface-muted);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-small);
+		color: var(--color-text-muted);
+		font-size: 0.78rem;
 	}
 	@media (max-width: 720px) {
 		.catalog-page {

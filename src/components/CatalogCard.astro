@@ -22,11 +22,19 @@ const isPrivate = item.visibility === 'private';
 	</ul>
 	<div class="card-footer">
 		{isPrivate && <p>源代码仓库仅对已授权的 GitHub 账号开放。</p>}
-		<a href={item.repository} target="_blank" rel="noopener noreferrer">
-			{isPrivate ? '访问私有仓库' : '查看 GitHub 仓库'}
-			<span aria-hidden="true">↗</span>
-			<span class="sr-only">（在新窗口打开）</span>
-		</a>
+		<div class="card-actions">
+			{item.website && (
+				<a class="website-link" href={item.website}>
+					打开网页
+					<span aria-hidden="true">→</span>
+				</a>
+			)}
+			<a href={item.repository} target="_blank" rel="noopener noreferrer">
+				{isPrivate ? '访问私有仓库' : '查看 GitHub 仓库'}
+				<span aria-hidden="true">↗</span>
+				<span class="sr-only">（在新窗口打开）</span>
+			</a>
+		</div>
 	</div>
 </article>
 
@@ -102,13 +110,28 @@ const isPrivate = item.visibility === 'private';
 		color: #8a4b0f;
 		font-size: 0.76rem;
 	}
-	.card-footer a {
+	.card-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1rem;
+	}
+	.card-actions a {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
 		font-size: 0.84rem;
 		font-weight: 700;
 		text-decoration: none;
+	}
+	.card-actions .website-link {
+		padding: 0.35rem 0.65rem;
+		background: var(--color-accent);
+		border-radius: var(--radius-small);
+		color: white;
+	}
+	.card-actions .website-link:hover {
+		background: var(--color-accent-hover);
+		color: white;
 	}
 	@media (prefers-reduced-motion: reduce) {
 		.catalog-card:hover {

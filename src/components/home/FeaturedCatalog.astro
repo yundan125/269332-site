@@ -23,7 +23,12 @@ const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.prop
 		</div>
 		<a class="button button-secondary" href={allHref}>{allLabel}</a>
 	</header>
-	<div class:list={['catalog-preview', { single: items.length === 1 }]}>
+	<div
+		class:list={[
+			'catalog-preview',
+			{ single: items.length === 1, pair: items.length === 2 },
+		]}
+	>
 		{items.map((item) => (
 			<article>
 				<div class="meta">
@@ -35,10 +40,17 @@ const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.prop
 				<ul aria-label={item.name + ' 技术标签'}>
 					{item.tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
 				</ul>
-				<a href={item.repository} target="_blank" rel="noopener noreferrer">
-					查看 GitHub 仓库 <span aria-hidden="true">↗</span>
-					<span class="sr-only">（在新窗口打开）</span>
-				</a>
+				<div class="card-actions">
+					{item.website && (
+						<a class="website-link" href={item.website}>
+							打开网页 <span aria-hidden="true">→</span>
+						</a>
+					)}
+					<a href={item.repository} target="_blank" rel="noopener noreferrer">
+						查看 GitHub 仓库 <span aria-hidden="true">↗</span>
+						<span class="sr-only">（在新窗口打开）</span>
+					</a>
+				</div>
 			</article>
 		))}
 	</div>
@@ -70,6 +82,9 @@ const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.prop
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1rem;
 	}
+	.catalog-preview.pair {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
 	.catalog-preview.single {
 		grid-template-columns: minmax(0, 1fr);
 	}
@@ -97,7 +112,7 @@ const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.prop
 	.single article > * {
 		grid-column: 1;
 	}
-	.single article > a {
+	.single article > .card-actions {
 		grid-column: 2;
 		grid-row: 1 / span 4;
 		align-self: center;
@@ -145,13 +160,30 @@ const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.prop
 		color: var(--color-text-muted);
 		font-weight: 500;
 	}
-	article > a {
+	.card-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.65rem 1rem;
+	}
+	.card-actions a {
 		font-size: 0.82rem;
 		font-weight: 700;
 		text-decoration: none;
 	}
+	.card-actions .website-link {
+		padding: 0.35rem 0.65rem;
+		background: var(--color-accent);
+		border-radius: var(--radius-small);
+		color: white;
+	}
+	.card-actions .website-link:hover {
+		background: var(--color-accent-hover);
+		color: white;
+	}
 	@media (max-width: 880px) {
-		.catalog-preview {
+		.catalog-preview,
+		.catalog-preview.pair {
 			grid-template-columns: 1fr;
 		}
 	}
