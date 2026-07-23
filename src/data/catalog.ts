@@ -49,7 +49,7 @@ export const projects: CatalogItem[] = [
 		repository: 'https://github.com/yundan125/tdm-claim-toggle-patcher',
 		category: '源码补丁工具',
 		status: '开发中',
-		visibility: 'private',
+		visibility: 'public',
 		tags: ['Python', 'AST', 'GUI / CLI', 'TwitchDropsMiner'],
 	},
 ];
