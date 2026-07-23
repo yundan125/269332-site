@@ -21,8 +21,11 @@ const { title, description, image, type = 'website' } = Astro.props;
 		<slot name="head" />
 	</head>
 	<body>
+		<a class="skip-link" href="#main-content">跳到主要内容</a>
 		<SiteHeader />
-		<slot />
+		<div id="main-content" tabindex="-1">
+			<slot />
+		</div>
 		<SiteFooter />
 	</body>
 </html>

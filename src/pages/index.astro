@@ -1,135 +1,119 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import FeaturedCatalog from '../components/home/FeaturedCatalog.astro';
+import FocusAreas from '../components/home/FocusAreas.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import HomeOverview from '../components/home/HomeOverview.astro';
+import TechStack from '../components/home/TechStack.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { projects, tools } from '../data/catalog';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const websiteSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: SITE_TITLE,
+	url: 'https://269332.xyz',
+	description: SITE_DESCRIPTION,
+};
 ---
 
-<BaseLayout title={SITE_TITLE + ' · 首页'} description={SITE_DESCRIPTION}>
+<BaseLayout title="269332 · 项目与实用工具" description={SITE_DESCRIPTION}>
+	<script
+		slot="head"
+		is:inline
+		type="application/ld+json"
+		set:html={JSON.stringify(websiteSchema)}
+	></script>
 	<main class="home">
-		<section class="hero">
-			<p class="eyebrow">个人网站</p>
-			<h1>写作、项目与工具，都在这里。</h1>
-			<p class="intro">
-				这里将持续记录博客文章、个人项目和开发过程，也会整理可以直接使用或跳转访问的网页工具。
-			</p>
-			<div class="actions">
-				<a class="primary" href="/blog/">阅读博客</a>
-				<a class="secondary" href="/tools/">打开工具箱</a>
+		<HomeHero />
+		<HomeOverview projectsCount={projects.length} toolsCount={tools.length} />
+		<FeaturedCatalog
+			id="featured-projects"
+			eyebrow="精选项目"
+			title="正在维护的项目"
+			description="从系统工具到源码补丁，这些项目都来自真实的使用需求，并持续在对应仓库中维护。"
+			items={projects}
+			allHref="/projects/"
+			allLabel="查看全部项目"
+		/>
+		<FeaturedCatalog
+			id="featured-tools"
+			eyebrow="精选工具"
+			title="可以继续使用和扩展的网页工具"
+			description="面向具体场景制作，当前工具信息与源码入口均来自真实仓库。"
+			items={tools}
+			allHref="/tools/"
+			allLabel="查看全部工具"
+		/>
+		<FocusAreas />
+		<TechStack />
+		<section class="about-callout" aria-labelledby="about-callout-title">
+			<div>
+				<p class="eyebrow">关于本站</p>
+				<h2 id="about-callout-title">了解这个网站</h2>
+				<p>269332 用于整理真实项目、实用工具和开发经验，并随着项目推进持续更新。</p>
 			</div>
-		</section>
-
-		<section class="entry-grid" aria-label="网站主要内容">
-			<a class="entry-card" href="/blog/">
-				<span>博客</span>
-				<strong>长期记录值得回看的内容</strong>
-				<p>文章发布后会在这里按时间展示。</p>
-			</a>
-			<a class="entry-card" href="/tools/">
-				<span>工具箱</span>
-				<strong>集中访问独立或站内工具</strong>
-				<p>工具信息将在确认真实地址后逐步补充。</p>
-			</a>
-			<a class="entry-card" href="/projects/">
-				<span>项目</span>
-				<strong>展示项目与开发记录</strong>
-				<p>不使用虚构成果，只收录真实项目。</p>
-			</a>
+			<div class="callout-actions">
+				<a class="button button-primary" href="/about/">关于本站</a>
+				<a
+					class="button button-secondary"
+					href="https://github.com/yundan125"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					GitHub <span aria-hidden="true">↗</span>
+					<span class="sr-only">（在新窗口打开）</span>
+				</a>
+			</div>
 		</section>
 	</main>
 </BaseLayout>
 
 <style>
 	.home {
-		width: min(1040px, calc(100% - 2rem));
+		width: min(var(--content-width), calc(100% - 2rem));
 		max-width: none;
-		padding: 5rem 0;
+		padding: 0 0 clamp(4rem, 8vw, 7rem);
 	}
-	.hero {
-		max-width: 780px;
-		padding: 2rem 0 4rem;
-	}
-	.eyebrow {
-		margin: 0 0 0.75rem;
-		color: var(--accent-dark);
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
-	}
-	h1 {
-		max-width: 12ch;
-		margin-bottom: 1rem;
-	}
-	.intro {
-		max-width: 42rem;
-		color: rgb(var(--gray));
-	}
-	.actions {
+	.about-callout {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 2rem;
-	}
-	.actions a {
-		display: inline-flex;
 		align-items: center;
-		min-height: 2.75rem;
-		padding: 0 1.1rem;
-		border: 1px solid var(--accent);
-		border-radius: 999px;
-		font-weight: 700;
-		text-decoration: none;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-top: var(--section-space);
+		padding: clamp(1.75rem, 4vw, 2.75rem);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-large);
+		box-shadow: var(--shadow-small);
 	}
-	.primary {
-		background: var(--accent);
-		color: white;
+	.about-callout > div:first-child {
+		max-width: 42rem;
 	}
-	.primary:hover {
-		background: var(--accent-dark);
-		color: white;
-	}
-	.secondary {
-		background: white;
-	}
-	.entry-grid {
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: 1rem;
-	}
-	.entry-card {
-		padding: 1.4rem;
-		background: rgba(255, 255, 255, 0.82);
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 14px;
-		color: rgb(var(--gray-dark));
-		text-decoration: none;
-	}
-	.entry-card span {
-		color: var(--accent-dark);
-		font-size: 0.85rem;
-		font-weight: 700;
-	}
-	.entry-card strong {
-		display: block;
-		margin: 0.5rem 0;
-		color: rgb(var(--black));
-	}
-	.entry-card p {
+	.about-callout p:last-child {
 		margin: 0;
-		color: rgb(var(--gray));
-		font-size: 0.9rem;
+		color: var(--color-text-muted);
 	}
-	.entry-card:hover {
-		border-color: var(--accent);
-		transform: translateY(-2px);
+	.callout-actions {
+		display: flex;
+		flex: 0 0 auto;
+		gap: 0.75rem;
 	}
 	@media (max-width: 720px) {
 		.home {
-			padding: 2.5rem 0;
+			width: min(var(--content-width), calc(100% - 1.5rem));
 		}
-		.hero {
-			padding-bottom: 2.5rem;
+		.about-callout {
+			display: block;
 		}
-		.entry-grid {
-			grid-template-columns: 1fr;
+		.callout-actions {
+			flex-wrap: wrap;
+			margin-top: 1.5rem;
+		}
+	}
+	@media (max-width: 420px) {
+		.callout-actions .button {
+			width: 100%;
 		}
 	}
 </style>

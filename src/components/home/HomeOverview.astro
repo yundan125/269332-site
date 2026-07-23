@@ -1,0 +1,77 @@
+---
+interface Props {
+	projectsCount: number;
+	toolsCount: number;
+}
+
+const { projectsCount, toolsCount } = Astro.props;
+---
+
+<section class="overview" aria-label="网站概览">
+	<div>
+		<strong>{projectsCount}</strong>
+		<span>个真实项目</span>
+	</div>
+	<div>
+		<strong>{toolsCount}</strong>
+		<span>个网页工具</span>
+	</div>
+	<div>
+		<strong>Windows / Web</strong>
+		<span>主要开发方向</span>
+	</div>
+	<div>
+		<strong>Astro</strong>
+		<span>静态网站技术</span>
+	</div>
+</section>
+
+<style>
+	.overview {
+		display: grid;
+		grid-template-columns: 0.7fr 0.7fr 1.35fr 1fr;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-large);
+		background: rgba(255, 255, 255, 0.82);
+		box-shadow: var(--shadow-small);
+	}
+	.overview > div {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-width: 0;
+		padding: 1.25rem 1.4rem;
+	}
+	.overview > div + div {
+		border-left: 1px solid var(--color-border);
+	}
+	strong {
+		color: var(--color-text);
+		font-size: clamp(1.15rem, 2vw, 1.45rem);
+		line-height: 1.25;
+	}
+	span {
+		margin-top: 0.3rem;
+		color: var(--color-text-muted);
+		font-size: 0.75rem;
+	}
+	@media (max-width: 720px) {
+		.overview {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+		.overview > div + div {
+			border-left: 0;
+		}
+		.overview > div:nth-child(even) {
+			border-left: 1px solid var(--color-border);
+		}
+		.overview > div:nth-child(n + 3) {
+			border-top: 1px solid var(--color-border);
+		}
+	}
+	@media (max-width: 390px) {
+		.overview > div {
+			padding: 1rem;
+		}
+	}
+</style>

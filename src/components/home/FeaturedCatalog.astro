@@ -1,0 +1,174 @@
+---
+import type { CatalogItem } from '../../data/catalog';
+
+interface Props {
+	id: string;
+	eyebrow: string;
+	title: string;
+	description: string;
+	items: CatalogItem[];
+	allHref: string;
+	allLabel: string;
+}
+
+const { id, eyebrow, title, description, items, allHref, allLabel } = Astro.props;
+---
+
+<section class="featured-section" aria-labelledby={id}>
+	<header class="section-heading">
+		<div>
+			<p class="eyebrow">{eyebrow}</p>
+			<h2 id={id}>{title}</h2>
+			<p>{description}</p>
+		</div>
+		<a class="button button-secondary" href={allHref}>{allLabel}</a>
+	</header>
+	<div class:list={['catalog-preview', { single: items.length === 1 }]}>
+		{items.map((item) => (
+			<article>
+				<div class="meta">
+					<span>{item.category}</span>
+					<span class="status">{item.status}</span>
+				</div>
+				<h3>{item.name}</h3>
+				<p>{item.summary}</p>
+				<ul aria-label={item.name + ' 技术标签'}>
+					{item.tags.slice(0, 3).map((tag) => <li>{tag}</li>)}
+				</ul>
+				<a href={item.repository} target="_blank" rel="noopener noreferrer">
+					查看 GitHub 仓库 <span aria-hidden="true">↗</span>
+					<span class="sr-only">（在新窗口打开）</span>
+				</a>
+			</article>
+		))}
+	</div>
+</section>
+
+<style>
+	.featured-section {
+		padding-top: var(--section-space);
+	}
+	.section-heading {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
+	.section-heading > div {
+		max-width: 42rem;
+	}
+	.section-heading p:last-child {
+		margin: 0;
+		color: var(--color-text-muted);
+	}
+	.section-heading > .button {
+		flex: 0 0 auto;
+	}
+	.catalog-preview {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.catalog-preview.single {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	article {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		padding: 1.45rem;
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-medium);
+		box-shadow: var(--shadow-small);
+	}
+	article:hover {
+		border-color: rgba(36, 93, 168, 0.5);
+		box-shadow: var(--shadow-medium);
+		transform: translateY(-2px);
+	}
+	.single article {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) auto;
+		gap: 0.25rem 2rem;
+		align-items: start;
+	}
+	.single article > * {
+		grid-column: 1;
+	}
+	.single article > a {
+		grid-column: 2;
+		grid-row: 1 / span 4;
+		align-self: center;
+	}
+	.meta,
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+	}
+	.meta {
+		margin-bottom: 0.9rem;
+	}
+	.meta span,
+	li {
+		padding: 0.18rem 0.5rem;
+		border-radius: 999px;
+		font-size: 0.68rem;
+		font-weight: 700;
+	}
+	.meta span {
+		background: var(--color-surface-muted);
+		color: var(--color-text-muted);
+	}
+	.meta .status {
+		background: var(--color-success-soft);
+		color: var(--color-success);
+	}
+	h3 {
+		overflow-wrap: anywhere;
+	}
+	article > p {
+		flex: 1;
+		color: var(--color-text-muted);
+		font-size: 0.88rem;
+	}
+	ul {
+		margin: 0 0 1.2rem;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		border: 1px solid var(--color-border);
+		border-radius: 0.35rem;
+		color: var(--color-text-muted);
+		font-weight: 500;
+	}
+	article > a {
+		font-size: 0.82rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	@media (max-width: 880px) {
+		.catalog-preview {
+			grid-template-columns: 1fr;
+		}
+	}
+	@media (max-width: 720px) {
+		.section-heading {
+			display: block;
+		}
+		.section-heading > .button {
+			margin-top: 1.25rem;
+		}
+		.single article {
+			display: flex;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		article:hover {
+			transform: none;
+		}
+	}
+</style>

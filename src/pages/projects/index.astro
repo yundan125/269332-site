@@ -4,15 +4,18 @@ import { projects } from '../../data/catalog';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="项目 · 269332" description="个人项目与开发记录。">
+<BaseLayout
+	title="项目 · 269332"
+	description="查看 269332 的 Windows 桌面工具、源码补丁和其他真实开发项目。"
+>
 	<main class="catalog-page">
 		<header>
 			<div>
 				<p class="eyebrow">项目</p>
-				<h1>项目与开发记录</h1>
-				<p>展示已经确认的真实项目、当前状态和主要技术方向。</p>
+				<h1>项目与开发实践</h1>
+				<p>展示真实项目、当前状态、主要技术方向和对应源码入口。</p>
 			</div>
-			<p class="count">{projects.length} 个项目</p>
+			<p class="count"><strong>{projects.length}</strong> 个项目</p>
 		</header>
 		<section class="catalog-grid" aria-label="项目列表">
 			{projects.map((project) => <CatalogCard item={project} />)}
@@ -22,7 +25,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <style>
 	.catalog-page {
-		width: min(1040px, calc(100% - 2rem));
+		width: min(var(--content-width), calc(100% - 2rem));
 		max-width: none;
 	}
 	header {
@@ -31,22 +34,24 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		justify-content: space-between;
 		gap: 2rem;
 		margin-bottom: 2.5rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--color-border);
 	}
-	.eyebrow {
-		margin: 0 0 0.5rem;
-		color: var(--accent-dark);
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
+	header h1 {
+		font-size: clamp(2.25rem, 6vw, 3.75rem);
 	}
 	header div > p:last-child,
 	.count {
 		margin-bottom: 0;
-		color: rgb(var(--gray));
+		color: var(--color-text-muted);
 	}
 	.count {
 		flex: 0 0 auto;
-		font-size: 0.85rem;
+		font-size: 0.82rem;
+	}
+	.count strong {
+		color: var(--color-text);
+		font-size: 1.25rem;
 	}
 	.catalog-grid {
 		display: grid;
@@ -54,6 +59,9 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		gap: 1rem;
 	}
 	@media (max-width: 720px) {
+		.catalog-page {
+			width: min(var(--content-width), calc(100% - 1.5rem));
+		}
 		header {
 			display: block;
 		}

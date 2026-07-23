@@ -1,0 +1,60 @@
+<section class="tech-section" aria-labelledby="tech-title">
+	<div>
+		<p class="eyebrow">技术栈</p>
+		<h2 id="tech-title">网站如何构建</h2>
+		<p>
+			网站使用 Astro 静态生成，通过 GitHub 管理源码，并由 Cloudflare 自动构建和部署。Markdown
+			与 MDX 内容能力保留，便于后续扩展。
+		</p>
+	</div>
+	<ul aria-label="网站技术栈">
+		<li>Astro</li>
+		<li>TypeScript</li>
+		<li>Markdown / MDX</li>
+		<li>GitHub</li>
+		<li>Cloudflare</li>
+	</ul>
+</section>
+
+<style>
+	.tech-section {
+		display: grid;
+		grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+		align-items: center;
+		gap: 3rem;
+		margin-top: var(--section-space);
+		padding: clamp(2rem, 5vw, 3.25rem);
+		background: #152130;
+		border-radius: var(--radius-large);
+		color: #bdc8d5;
+	}
+	h2 {
+		color: white;
+	}
+	.tech-section > div > p:last-child {
+		margin: 0;
+	}
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		padding: 0.45rem 0.7rem;
+		background: rgba(255, 255, 255, 0.07);
+		border: 1px solid rgba(255, 255, 255, 0.13);
+		border-radius: var(--radius-small);
+		color: white;
+		font-size: 0.78rem;
+		font-weight: 700;
+	}
+	@media (max-width: 760px) {
+		.tech-section {
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+	}
+</style>

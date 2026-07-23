@@ -36,47 +36,47 @@ const isPrivate = item.visibility === 'private';
 		flex-direction: column;
 		min-width: 0;
 		padding: 1.5rem;
-		background: rgba(255, 255, 255, 0.88);
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 16px;
-		box-shadow: 0 8px 24px rgba(var(--gray), 10%);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-medium);
+		box-shadow: var(--shadow-small);
 	}
 	.catalog-card:hover {
-		border-color: rgba(35, 55, 255, 0.5);
-		box-shadow: 0 12px 30px rgba(var(--gray), 18%);
+		border-color: rgba(36, 93, 168, 0.5);
+		box-shadow: var(--shadow-medium);
 		transform: translateY(-2px);
 	}
 	.card-meta {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.45rem;
-		margin-bottom: 0.85rem;
+		margin-bottom: 0.9rem;
 	}
 	.card-meta span {
-		padding: 0.2rem 0.55rem;
-		background: rgb(var(--gray-light));
+		padding: 0.18rem 0.5rem;
+		background: var(--color-surface-muted);
 		border-radius: 999px;
-		color: rgb(var(--gray-dark));
-		font-size: 0.72rem;
+		color: var(--color-text-muted);
+		font-size: 0.68rem;
 		font-weight: 700;
 	}
 	.card-meta .status {
-		background: #e5f5e8;
-		color: #17672a;
+		background: var(--color-success-soft);
+		color: var(--color-success);
 	}
 	.card-meta .private {
 		background: #fff0df;
 		color: #8a4b0f;
 	}
 	h2 {
-		margin-bottom: 0.65rem;
-		font-size: 1.4rem;
+		margin-bottom: 0.7rem;
+		font-size: 1.35rem;
 		overflow-wrap: anywhere;
 	}
 	.summary {
 		flex: 1;
-		color: rgb(var(--gray));
-		font-size: 0.92rem;
+		color: var(--color-text-muted);
+		font-size: 0.9rem;
 	}
 	.tag-list {
 		display: flex;
@@ -87,25 +87,26 @@ const isPrivate = item.visibility === 'private';
 		list-style: none;
 	}
 	.tag-list li {
-		padding: 0.2rem 0.5rem;
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 6px;
-		color: rgb(var(--gray));
-		font-size: 0.72rem;
+		padding: 0.18rem 0.45rem;
+		border: 1px solid var(--color-border);
+		border-radius: 0.35rem;
+		color: var(--color-text-muted);
+		font-size: 0.68rem;
 	}
 	.card-footer {
 		padding-top: 1rem;
-		border-top: 1px solid rgb(var(--gray-light));
+		border-top: 1px solid var(--color-border);
 	}
 	.card-footer p {
 		margin-bottom: 0.75rem;
 		color: #8a4b0f;
-		font-size: 0.78rem;
+		font-size: 0.76rem;
 	}
 	.card-footer a {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
+		font-size: 0.84rem;
 		font-weight: 700;
 		text-decoration: none;
 	}

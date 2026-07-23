@@ -4,17 +4,20 @@ import { tools } from '../../data/catalog';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="工具箱 · 269332" description="网页工具与功能导航。">
+<BaseLayout
+	title="工具箱 · 269332"
+	description="浏览 269332 收录的网页工具、电竞工具与功能导航。"
+>
 	<main class="catalog-page">
 		<header>
 			<div>
 				<p class="eyebrow">工具箱</p>
 				<h1>网页工具与功能导航</h1>
-				<p>收录可以直接使用或通过独立仓库访问的网页工具。</p>
+				<p>收录可以直接使用或通过公开仓库获取的网页工具。</p>
 			</div>
-			<p class="count">{tools.length} 个工具</p>
+			<p class="count"><strong>{tools.length}</strong> 个工具</p>
 		</header>
-		<section class="catalog-grid" aria-label="工具列表">
+		<section class="catalog-grid single-friendly" aria-label="工具列表">
 			{tools.map((tool) => <CatalogCard item={tool} />)}
 		</section>
 	</main>
@@ -22,7 +25,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 <style>
 	.catalog-page {
-		width: min(1040px, calc(100% - 2rem));
+		width: min(var(--content-width), calc(100% - 2rem));
 		max-width: none;
 	}
 	header {
@@ -31,29 +34,37 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 		justify-content: space-between;
 		gap: 2rem;
 		margin-bottom: 2.5rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--color-border);
 	}
-	.eyebrow {
-		margin: 0 0 0.5rem;
-		color: var(--accent-dark);
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.14em;
+	header h1 {
+		font-size: clamp(2.25rem, 6vw, 3.75rem);
 	}
 	header div > p:last-child,
 	.count {
 		margin-bottom: 0;
-		color: rgb(var(--gray));
+		color: var(--color-text-muted);
 	}
 	.count {
 		flex: 0 0 auto;
-		font-size: 0.85rem;
+		font-size: 0.82rem;
+	}
+	.count strong {
+		color: var(--color-text);
+		font-size: 1.25rem;
 	}
 	.catalog-grid {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 1rem;
 	}
+	.catalog-grid.single-friendly > :only-child {
+		max-width: 760px;
+	}
 	@media (max-width: 720px) {
+		.catalog-page {
+			width: min(var(--content-width), calc(100% - 1.5rem));
+		}
 		header {
 			display: block;
 		}

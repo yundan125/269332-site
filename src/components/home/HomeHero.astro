@@ -1,0 +1,190 @@
+<section class="home-hero" aria-labelledby="home-title">
+	<div class="hero-copy">
+		<p class="eyebrow">个人开发空间</p>
+		<h1 id="home-title">把想法做成<br />可以使用的东西</h1>
+		<p class="hero-intro">
+			这里收录 Windows 桌面工具、网页应用、游戏相关工具，以及从实际问题出发的开发项目。
+		</p>
+		<div class="hero-actions">
+			<a class="button button-primary" href="/projects/">查看项目</a>
+			<a class="button button-secondary" href="/tools/">打开工具箱</a>
+			<a
+				class="text-link"
+				href="https://github.com/yundan125"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				GitHub <span aria-hidden="true">↗</span>
+				<span class="sr-only">（在新窗口打开）</span>
+			</a>
+		</div>
+	</div>
+	<div class="hero-visual" aria-hidden="true">
+		<div class="window-bar">
+			<span></span><span></span><span></span>
+			<small>workspace / 269332</small>
+		</div>
+		<div class="window-body">
+			<div class="code-line wide"></div>
+			<div class="code-line medium"></div>
+			<div class="module-grid">
+				<div><span>01</span><strong>TOOLS</strong></div>
+				<div><span>02</span><strong>PROJECTS</strong></div>
+				<div><span>03</span><strong>BUILD</strong></div>
+				<div class="signature">269332</div>
+			</div>
+			<div class="status-line"><span></span> STATIC SITE / READY TO EXTEND</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.home-hero {
+		display: grid;
+		grid-template-columns: minmax(0, 1.08fr) minmax(22rem, 0.92fr);
+		align-items: center;
+		gap: clamp(2.5rem, 7vw, 6rem);
+		min-height: min(44rem, calc(100vh - 4.5rem));
+		padding: clamp(4rem, 9vw, 7.5rem) 0;
+	}
+	.hero-copy {
+		min-width: 0;
+	}
+	h1 {
+		max-width: 11ch;
+		margin-bottom: 1.35rem;
+	}
+	.hero-intro {
+		max-width: 36rem;
+		color: var(--color-text-muted);
+		font-size: clamp(1.05rem, 2vw, 1.2rem);
+	}
+	.hero-actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 2rem;
+	}
+	.text-link {
+		padding: 0.6rem 0.4rem;
+		font-size: 0.9rem;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	.hero-visual {
+		min-width: 0;
+		overflow: hidden;
+		background: #111b27;
+		border: 1px solid rgba(255, 255, 255, 0.12);
+		border-radius: var(--radius-large);
+		box-shadow: var(--shadow-medium);
+		transform: rotate(1deg);
+	}
+	.window-bar {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		padding: 0.8rem 1rem;
+		background: rgba(255, 255, 255, 0.05);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+	}
+	.window-bar > span {
+		width: 0.55rem;
+		height: 0.55rem;
+		background: #607086;
+		border-radius: 50%;
+	}
+	.window-bar small {
+		margin-left: auto;
+		color: #93a3b7;
+		font-size: 0.68rem;
+		letter-spacing: 0.06em;
+	}
+	.window-body {
+		padding: clamp(1.25rem, 4vw, 2rem);
+	}
+	.code-line {
+		height: 0.55rem;
+		margin-bottom: 0.7rem;
+		background: #314257;
+		border-radius: 999px;
+	}
+	.code-line.wide {
+		width: 72%;
+	}
+	.code-line.medium {
+		width: 45%;
+		background: #245da8;
+	}
+	.module-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.75rem;
+		margin: 2rem 0;
+	}
+	.module-grid > div {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		min-height: 6.5rem;
+		padding: 0.9rem;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.11);
+		border-radius: var(--radius-medium);
+		color: #dbe7f5;
+	}
+	.module-grid span {
+		color: #6e87a4;
+		font-size: 0.65rem;
+	}
+	.module-grid strong {
+		font-size: 0.72rem;
+		letter-spacing: 0.12em;
+	}
+	.module-grid .signature {
+		align-items: flex-end;
+		justify-content: flex-end;
+		background: #e7f0fb;
+		color: #19477f;
+		font-size: clamp(1.4rem, 4vw, 2rem);
+		font-weight: 700;
+		letter-spacing: 0.04em;
+	}
+	.status-line {
+		color: #8294a9;
+		font-size: 0.63rem;
+		letter-spacing: 0.09em;
+	}
+	.status-line span {
+		display: inline-block;
+		width: 0.45rem;
+		height: 0.45rem;
+		margin-right: 0.4rem;
+		background: #55a77b;
+		border-radius: 50%;
+	}
+	@media (max-width: 860px) {
+		.home-hero {
+			grid-template-columns: 1fr;
+			min-height: 0;
+		}
+		.hero-visual {
+			width: min(34rem, 100%);
+			transform: none;
+		}
+	}
+	@media (max-width: 480px) {
+		.home-hero {
+			padding-top: 3.5rem;
+		}
+		.hero-actions .button {
+			flex: 1 1 9rem;
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero-visual {
+			transform: none;
+		}
+	}
+</style>
