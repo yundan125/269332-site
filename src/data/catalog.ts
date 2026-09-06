@@ -39,6 +39,9 @@ import twitterXMediaRenamerIcon from '../assets/projects/twitter-x-media-renamer
 import twitterXMediaRenamerScreenshot from '../assets/projects/twitter-x-media-renamer/screenshot.png';
 import overwatchHeroQuizIcon from '../assets/projects/overwatch-hero-quiz/icon.png';
 import cloudlightVideoCompressorIcon from '../assets/projects/cloudlight-video-compressor/icon.png';
+import cloudlightWeChatChatView from '../assets/projects/cloudlight-wechat/chat-view.png';
+import cloudlightWeChatExport from '../assets/projects/cloudlight-wechat/export.png';
+import cloudlightWeChatIcon from '../assets/projects/cloudlight-wechat/icon.png';
 
 export type CatalogKind = 'desktop' | 'online' | 'userscript';
 export type CatalogCategoryId = 'windows' | 'game-streaming' | 'games' | 'scripts';
@@ -75,6 +78,7 @@ export interface CatalogItem {
 	status: 'available';
 	capabilities: string[];
 	accent: CatalogAccent;
+	operatingSystems?: string[];
 	icon?: ImageMetadata;
 	screenshot?: ImageMetadata;
 	screenshotAlt?: string;
@@ -133,6 +137,42 @@ export const statusLabels: Record<CatalogItem['status'], string> = {
 };
 
 export const projects: CatalogItem[] = [
+	{
+		id: 'cloudlight-wechat',
+		name: 'CloudLight WeChat',
+		summary: '在 Windows 和 macOS 上查看、搜索、整理和导出微信聊天记录；聊天数据以本地处理为主，AI、转写与远程能力按需启用。',
+		kind: 'desktop',
+		categories: ['windows'],
+		status: 'available',
+		capabilities: ['聊天记录浏览与搜索', '媒体查看与导出', 'AI 与扩展能力'],
+		accent: 'cyan',
+		operatingSystems: ['Windows 10', 'Windows 11', 'macOS'],
+		icon: cloudlightWeChatIcon,
+		screenshots: [
+			{
+				image: cloudlightWeChatChatView,
+				alt: 'CloudLight WeChat 聊天查看界面，左侧显示联系人会话列表，右侧打开“手机回收维修”会话的消息查看区域',
+				caption: '主界面把会话列表和当前聊天查看区域并列，便于进入具体记录。',
+			},
+			{
+				image: cloudlightWeChatExport,
+				alt: 'CloudLight WeChat 数据导出界面，左侧选择会话，右侧选择 ChatLab、JSON、HTML、TXT、Excel 等导出格式和媒体导出选项',
+				caption: '先选择需要导出的会话、格式和媒体，再指定本地输出目录。',
+			},
+		],
+		detailsPath: '/projects/cloudlight-wechat/',
+		primaryAction: {
+			label: '下载 Windows / macOS 版',
+			href: 'https://github.com/Cloud-Light125/CloudLight-WeChat/releases',
+			external: true,
+		},
+		secondaryAction: {
+			label: '查看 GitHub',
+			href: 'https://github.com/Cloud-Light125/CloudLight-WeChat',
+			external: true,
+		},
+		ctaNote: '支持 Windows 与 macOS；在 GitHub Releases 页面选择对应平台安装包。',
+	},
 	{
 		id: 'cloudlight-blizzard',
 		name: 'CloudLight Blizzard',

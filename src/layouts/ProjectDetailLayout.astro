@@ -58,7 +58,7 @@ const projectSchema = {
 	inLanguage: 'zh-CN',
 	url: canonicalURL,
 	applicationCategory: item.kind === 'desktop' ? 'UtilitiesApplication' : 'BrowserApplication',
-	operatingSystem: item.kind === 'desktop' ? 'Windows 10, Windows 11' : 'Web browser',
+	operatingSystem: item.kind === 'desktop' ? (item.operatingSystems?.join(', ') ?? 'Windows 10, Windows 11') : 'Web browser',
 	...(socialImage ? { image: new URL(socialImage.src, Astro.site) } : {}),
 	...(item.secondaryAction?.external && isGitHubRepository(item.secondaryAction.href) ? { sameAs: item.secondaryAction.href } : {}),
 	...(item.kind === 'desktop' && item.primaryAction.external && isGitHubReleasesPage(item.primaryAction.href)

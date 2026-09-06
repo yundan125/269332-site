@@ -255,6 +255,163 @@ export const projectDetails: ProjectDetail[] = [
 		],
 	},
 	{
+		slug: 'cloudlight-wechat',
+		item: getCatalogItem('cloudlight-wechat'),
+		pageDescription: 'CloudLight WeChat 面向 Windows 和 macOS，用于在本地查看、搜索、整理和导出自己的微信聊天记录，并可按需使用 AI、语音转写、插件和远程功能。',
+		sections: [
+			{
+				type: 'features',
+				id: 'browse-and-search',
+				title: '把聊天记录重新变成可浏览的资料',
+				intro: [
+					'CloudLight WeChat 将已有的微信聊天数据整理成桌面端可浏览的资料库。会话列表、联系人和聊天内容放在同一套界面里，适合回看日常对话、查找上下文或整理长期记录。',
+					'核心聊天数据和应用配置以本地处理为主；AI、在线转写、通知、模型下载、远程控制等网络功能只有在用户启用并配置后，才会连接对应服务。',
+				],
+				layout: 'columns',
+				items: [
+					{ title: '会话与联系人', description: '从会话列表进入联系人、群聊和私聊，先找到需要查看的那段关系与上下文。' },
+					{ title: '聊天时间线', description: '在消息查看区域按时间浏览文字和媒体消息，适合从某一天或某段对话继续回看。' },
+					{ title: '关键词检索', description: '用关键词在已有聊天资料中寻找相关消息，减少逐个打开会话翻找的时间。' },
+					{ title: '按条件定位', description: '支持结合时间和发送者等条件缩小范围，把长时间积累的聊天记录整理成更容易查找的内容。' },
+				],
+			},
+			{
+				type: 'screenshots',
+				id: 'chat-screen',
+				title: '从会话列表进入具体记录',
+				intro: ['主界面把会话列表和聊天查看区域并列，打开目标会话后再继续浏览消息与媒体。'],
+				indexes: [0],
+			},
+			{
+				type: 'feature-groups',
+				id: 'media-and-moments',
+				title: '文字和媒体放在一起查看',
+				intro: ['聊天记录不只是一串文字。CloudLight WeChat 会把常见消息媒体和朋友圈内容放回可浏览的上下文中；需要转写时，再根据配置选择本地或在线能力。'],
+				groups: [
+					{
+						title: '消息媒体',
+						items: [
+							{ title: '图片、视频与实况照片', description: '查看聊天中的图片、视频和当前支持的实况照片类型，保留消息所在的会话语境。' },
+							{ title: '语音消息', description: '播放聊天语音；语音转写可以使用本地模型或在线服务，是否连接外部服务取决于用户配置。' },
+							{ title: '文件与表情', description: '查看文件、表情等消息，并在导出时按需整理相关附件。' },
+						],
+					},
+					{
+						title: '朋友圈与时间线',
+						items: [
+							{ title: '朋友圈内容', description: '从独立入口浏览朋友圈动态及其媒体内容，和聊天记录分开整理。' },
+							{ title: '消息上下文', description: '图片、语音、视频和文件以消息为入口打开，便于结合发送者和时间理解内容。' },
+							{ title: '按需转写', description: '可以在单条或批量处理场景中使用语音转写；本地与在线模型的选择由当前设置决定。' },
+						],
+					},
+				],
+			},
+			{
+				type: 'features',
+				id: 'export-and-archive',
+				title: '搜索、导出与归档',
+				intro: [
+					'导出页把选择会话、格式、时间范围、媒体选项和输出位置放在一起。聊天记录、联系人和朋友圈内容都可以按需整理成适合长期保存的文件。',
+					'当前导出实现还支持文件附件；导出时可以选择是否复制图片、视频、语音、表情和文件等内容，具体范围由导出选项决定。',
+				],
+				layout: 'cards',
+				items: [
+					{ title: '聊天记录', description: '选择单个或多个会话，并按时间范围导出消息内容，保留发送者和时间等上下文。' },
+					{ title: '联系人与朋友圈', description: '分别导出联系人资料和朋友圈内容，用于个人整理、备份或长期归档。' },
+					{ title: '多种输出格式', description: '导出界面提供 ChatLab、JSON / JSONL、HTML、TXT、Excel 和 PostgreSQL 等格式选项。' },
+					{ title: '附件一起归档', description: '支持把聊天中的 PDF、Word、Excel、压缩包等文件附件写入导出目录，并在 HTML 导出中保留可打开的文件卡片。' },
+				],
+			},
+			{
+				type: 'screenshots',
+				id: 'export-screen',
+				title: '把格式、媒体与目录一起选好',
+				intro: ['导出页同时显示会话选择、导出格式、媒体开关与本地输出目录，适合开始归档前先确认范围。'],
+				indexes: [1],
+			},
+			{
+				type: 'feature-groups',
+				id: 'optional-ai-and-extensions',
+				title: '需要时再打开 AI 和扩展能力',
+				intro: ['AI 是聊天资料库之上的扩展能力，不会取代查看、搜索和导出这些核心功能。模型、权限与网络范围由用户在应用中配置。'],
+				groups: [
+					{
+						title: '按需连接模型',
+						items: [
+							{ title: '本地 Ollama', description: '可以配置本机 Ollama，为聊天资料分析提供本地模型选项。' },
+							{ title: '兼容 API 与模型服务', description: '支持配置兼容 API、模型服务和模型选择；能否使用取决于服务地址、凭据和当前模型。' },
+							{ title: 'ChatGPT 相关能力', description: '可按环境配置 ChatGPT 订阅等接入方式，登录状态、可用模型和网络行为以当前配置为准。' },
+						],
+					},
+					{
+						title: 'Agent、MCP 与插件',
+						items: [
+							{ title: 'AI Agent', description: '让 Agent 根据权限辅助检索、理解和整理聊天资料，也可以使用应用提供的相关工具。' },
+							{ title: 'MCP 服务', description: '通过 MCP 把已配置的聊天、媒体、搜索和导出能力提供给兼容客户端。' },
+							{ title: '插件系统', description: '除了内置功能，还可以通过插件和 MCP 扩展聊天数据、媒体、搜索、导出和 AI 能力。' },
+						],
+					},
+				],
+			},
+			{
+				type: 'features',
+				id: 'remote-and-notifications',
+				title: '可选的手机遥控与通知',
+				intro: ['可选的手机遥控与通知功能，可以在离开电脑时连接桌面端的部分能力；具体可用范围取决于配对状态、权限、平台和服务配置。'],
+				layout: 'columns',
+				items: [
+					{ title: '查看部分桌面能力', description: '完成配对后，可以从手机查看部分微信状态、账号信息、会话内容或 Agent 相关内容。' },
+					{ title: '按需接收通知', description: '配置后可接收已启用的 AI、克隆对话或微信新消息通知；通知通道和数据范围由用户选择。' },
+					{ title: '远程 AI 与语音', description: '当前功能包含远程 AI 配置、手机语音输入及部分实时能力；是否可用以桌面端和手机端的当前配置为准。' },
+				],
+			},
+			{
+				type: 'facts',
+				id: 'data-and-local-processing',
+				title: '数据与本地处理',
+				items: [
+					{ term: '默认目录', description: '应用数据默认整理到 Documents/CloudLight/CloudLight WeChat。' },
+					{ term: '核心处理', description: '核心聊天数据和应用配置以本地处理为主，适合把自己的聊天资料整理在本机。' },
+					{ term: '按需联网', description: '启用 AI、在线模型、在线语音转写、通知、模型下载、手机遥控或其他网络功能时，应用会访问对应外部服务；具体数据范围取决于功能和服务商。' },
+					{ term: '兼容迁移', description: '应用可以识别并迁移旧版 CipherTalk 的配置与缓存路径，方便已有用户继续使用旧数据。' },
+				],
+			},
+			{
+				type: 'facts',
+				id: 'platform-and-installation',
+				title: '平台与获取',
+				items: [
+					{ term: '支持系统', description: 'Windows 10、Windows 11 与 macOS。' },
+					{ term: '安装包', description: 'GitHub Releases 提供 Windows .exe 与 macOS .dmg；进入 Releases 页面后选择对应平台的安装包。' },
+					{ term: '首次使用', description: '启动后按应用内引导选择微信数据位置，并完成当前平台需要的访问权限或密钥配置。' },
+					{ term: '使用边界', description: '请只处理自己有权访问和整理的聊天数据，并以应用当前界面和配置为准判断可用功能。' },
+				],
+			},
+			{
+				type: 'features',
+				id: 'project-origin',
+				title: '项目来源与许可',
+				intro: ['CloudLight WeChat 基于 CipherTalk 继续维护，并在当前分支上进行了品牌、桌面功能、数据路径和后续功能扩展。当前仓库由 Cloud-Light125 维护；上游原项目与当前维护分支的关系以仓库 README 为准。'],
+				layout: 'list',
+				items: [
+					{ title: '上游来源', description: '项目基于 ILoveBingLu/CipherTalk 继续维护，原作者与上游归属为 ILoveBingLu。' },
+					{ title: 'CC BY-NC-SA 4.0', description: '项目按仓库当前 CC BY-NC-SA 4.0 许可发布，完整条款请查看 GitHub License。' },
+				],
+			},
+			{
+				type: 'links',
+				id: 'source-and-license',
+				title: '源码与发布记录',
+				items: [
+					{ label: '查看 GitHub 仓库', href: 'https://github.com/Cloud-Light125/CloudLight-WeChat' },
+					{ label: '查看下载与 Releases', href: 'https://github.com/Cloud-Light125/CloudLight-WeChat/releases' },
+					{ label: '查看 License', href: 'https://github.com/Cloud-Light125/CloudLight-WeChat/blob/main/LICENSE' },
+					{ label: '查看上游 ILoveBingLu/CipherTalk', href: 'https://github.com/ILoveBingLu/CipherTalk' },
+				],
+			},
+		],
+	},
+	{
 		slug: 'cloudlight-xiaomi',
 		item: getCatalogItem('cloudlight-xiaomi'),
 		pageDescription: '查看 Xiaomi 账号下的设备，并记录小米路由器设备的在线 / 离线历史、时长和时间轴；支持设备开关控制、主体管理与 QQ 提醒。',
